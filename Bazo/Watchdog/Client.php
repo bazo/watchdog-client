@@ -20,7 +20,7 @@ class Client
 		$this->appKey = $appKey;
 	}
 	
-	public function log($message, $level = 'error')
+	public function log($message, $level = Alert::ERROR)
 	{
 		$data = array(
 			'appId' => $this->appId,
