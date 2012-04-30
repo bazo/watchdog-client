@@ -1,5 +1,5 @@
 <?php
-namespace Watchdog;
+namespace Bazo\Watchdog;
 /**
  * Description of WatchdogClient
  *
