@@ -11,13 +11,14 @@ class Client
 		$appId,
 		$appKey,
 		
-		$endPoint = 'http://watchdog.local/api/log'	
+		$endPoint = '/api/log'	
 	;
 	
-	public function __construct($appId, $appKey)
+	public function __construct($appId, $appKey, $server = 'http://watchdog.pagodabox.com')
 	{
 		$this->appId = $appId;
 		$this->appKey = $appKey;
+		$this->endPoint = $server.$this->endPoint;
 	}
 	
 	public function log($message, $level = Alert::ERROR)
