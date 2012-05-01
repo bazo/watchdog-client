@@ -30,6 +30,31 @@ class Client
 			'level' => $level
 		);
 		
+		return $this->sendData($data);
+	}
+	
+	public function logNette($netteMessage, $level = Alert::ERROR)
+	{
+		
+		if (is_array($netteMessage)) {
+			$message = implode(' ', $netteMessage);
+		}
+		
+		$data = array(
+			'appId' => $this->appId,
+			'appKey' => $this->appKey,
+			'message' => $message,
+			'level' => $level,
+			'nette' => true,
+			'netteMessage' => $netteMessage
+		);
+		
+		return $this->sendData($data);
+	}
+	
+	private function sendData($data)
+	{
+		$data = array('data' => json_encode($data));
 		$ch = curl_init($this->endPoint);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_POST, true);
