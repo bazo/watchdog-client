@@ -15,12 +15,12 @@ class NetteLogger extends \Nette\Diagnostics\Logger
 	public function __construct(\Bazo\Watchdog\Client $watchdogClient)
 	{
 		$this->watchdogClient = $watchdogClient;
+		$this->directory = \Nette\Diagnostics\Debugger::$logDirectory;
 	}
 	
 	public function log($message, $priority = self::INFO)
 	{
 		$res = parent::log($message, $priority);
-		
 		$levelMap = array(
 			self::DEBUG => Alert::NOTICE,
 			self::CRITICAL => Alert::ERROR,
@@ -28,9 +28,10 @@ class NetteLogger extends \Nette\Diagnostics\Logger
 			self::INFO => Alert::INFO,
 			self::WARNING => Alert::ERROR
 		);
-		
+		if (is_array($message)) {
+			$message = implode(' ', $message);
+		}
 		$level = $levelMap[$priority];
-		
 		$this->watchdogClient->log($message, $level);
 		return $res;
 	}
