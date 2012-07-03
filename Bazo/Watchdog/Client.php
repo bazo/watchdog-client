@@ -56,7 +56,7 @@ class Client
 	{
 		$data = array('data' => json_encode($data));
 		$ch = curl_init($this->endPoint);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+		@curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
