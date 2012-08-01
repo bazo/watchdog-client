@@ -1,6 +1,6 @@
 {
     "name": "bazo/watchdog-client",
-	"type": "library",
+    "type": "nette-addon",
     "description": "Logging to Watchdog service for PHP 5.3",
     "keywords": ["log","logging","watchdog"],
     "homepage": "https://github.com/bazo/watchdog-client",
@@ -12,9 +12,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0"
+        "php": ">=5.3.0",
+        "nette/addon-installer": "@dev"
     },
 	"autoload": {
         "psr-0": { "Bazo\\Watchdog": "" }
+    },
+    "extra": {
+        "nette-addon": {
+            "initializer": "Bazo\\Watchdog\\NetteLogger::register"
+        }
     }
 }

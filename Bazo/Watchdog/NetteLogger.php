@@ -32,4 +32,11 @@ class NetteLogger extends \Nette\Diagnostics\Logger
 		$this->watchdogClient->logNette($message, $level);
 		return $res;
 	}
+
+
+
+	public static function register(Client $watchdogClient)
+	{
+		\Nette\Diagnostics\Debugger::$logger = new static($watchdogClient);
+	}
 }
