@@ -41,6 +41,8 @@ class WatchdogClient
 
 		if (is_array($netteMessage)) {
 			$message = implode(' ', $netteMessage);
+		} else {
+			$message = $netteMessage;
 		}
 
 		$data = [
